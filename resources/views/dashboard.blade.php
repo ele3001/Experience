@@ -14,4 +14,5 @@
             </div>
         </div>
     </div>
+    <a href="/" class="btn btn-secondary">Retour à l'expérience</a>
 </x-app-layout>

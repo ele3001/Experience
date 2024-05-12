@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('distance_sous_terre');
             $table->string('priorite');
             $table->text('description_probleme');
-            $table->string('etat');
+            $table->string('etat')->nullable();
             $table->string('type')->default('default');
             $table->timestamps();
         });

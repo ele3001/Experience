@@ -44,4 +44,5 @@
             </x-primary-button>
         </div>
     </form>
+    <a href="/register" class="btn btn-secondary">Inscription</a>
 </x-guest-layout>

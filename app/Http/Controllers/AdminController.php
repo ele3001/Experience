@@ -86,4 +86,9 @@ class AdminController extends Controller
     {
         //
     }
+    public function EspaceModerateur()
+{
+    $formulaires = Formulaire::all();
+    return view('espace-moderateur', compact('formulaires'));
+}
 }
