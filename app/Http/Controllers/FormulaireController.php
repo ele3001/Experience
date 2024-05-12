@@ -4,7 +4,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 use App\Models\formulaire; 
 
 
@@ -75,6 +75,7 @@ class FormulaireController extends Controller
     public function edit(Formulaire $formulaire)
     {
         return view('formulaires.edit', compact('formulaire'));
+        
     }
     
     public function update(Request $request, $id)

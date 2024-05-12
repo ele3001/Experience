@@ -45,7 +45,8 @@
             <textarea class="form-control" id="description_probleme" name="description_probleme">{{ $formulaire->description_probleme }}</textarea>
         </div>
         
-
+        <p>Modifié le {{ $formulaire->updated_at ->format('d/m/Y H:i:s') }} par {{ Auth::user()->name }}</p>
+        
 
 
         <div class="form-actions">
