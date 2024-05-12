@@ -4,7 +4,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\formulaire; // Assurez-vous d'importer le modèle Experience
+use Illuminate\Support\Facades\Auth;
+use App\Models\formulaire; 
+
 
 
 
@@ -12,7 +14,7 @@ class FormulaireController extends Controller
 {
     public function submitExperience(Request $request)
     {
-        // Valider les données soumises par le formulaire
+        
         $validatedData = $request->validate([
             'prenom' => 'nullable',
             'nom' => 'nullable',
@@ -36,7 +38,6 @@ class FormulaireController extends Controller
         
         $formulaire->save();
 
-        // Rediriger l'utilisateur vers une page de confirmation ou une autre page appropriée
         return redirect()->route('confirmation')->with('success', 'Expérience soumise avec succès.');
     }
 
@@ -92,6 +93,7 @@ class FormulaireController extends Controller
             $formulaire->etat = $request->input('etat');
             $formulaire->created_at = now();
             $formulaire->save();
+            
         return redirect('/');
     }
         public function publish(Formulaire $formulaire)

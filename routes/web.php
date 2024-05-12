@@ -8,45 +8,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\ExperienceController;
 use App\Models\Formulaire;
 
-Route::post('/formulaire', function (Request $request) {
-    // Validation des données
-    $validatedData = $request->validate([
-        'nom_site_pratique' => 'required',
-        'titre' => 'required',
-        'prenom' => 'required', // Ajoutez les règles de validation pour les autres champs
-        'nom' => 'required',
-        'activite' => 'required',
-        'lieu' => 'required',
-        'date' => 'required',
-        'distance_sous_terre' => 'required',
-        'priorite' => 'required',
-        'description_probleme' => 'required',
-        'etat' => 'required',
-        
-    ]);
-
-    // Création d'une nouvelle instance du modèle Information
-    $information = new Information();
-    $information->nom_site_pratique = $validatedData['nom_site_pratique'];
-    $information->titre = $validatedData['titre'];
-    $information->prenom = $validatedData['prenom']; // Ajoutez les champs manquants ici
-    $information->nom = $validatedData['nom'];
-    $information->activite = $validatedData['activite'];
-    $information->lieu = $validatedData['lieu'];
-    $information->date = $validatedData['date'];
-    $information->distance_sous_terre = $validatedData['distance_sous_terre'];
-    $information->priorite = $validatedData['priorite'];
-    $information->description_probleme = $validatedData['description_probleme'];
-    $information->etat = $validatedData['etat'];
-
-
-    // Enregistrement des données dans la base de données
-    $information->save();
-
-    // Redirection avec un message de succès
-    return redirect('/formulaire')->with('success', 'Les informations ont été enregistrées avec succès.');
-})->name('submit.formulaire');
-
 
 Route::get('/experience', function () {
     return view('experience');
@@ -68,7 +29,6 @@ Route::get('/formulaire', function () {
 });
 
 Route::get('/experience/{experience}', [ExperienceController::class, 'show'])->name('experience.show');
-// Route::get('/experience', [ExperienceController::class, 'methodName'])->name('experience');
 Route::get('/', [ExperienceController::class, 'index']);
 
 Route::get('/show/{formulaire}', [FormulaireController::class, 'show'])->name('formulaire.show');
@@ -87,10 +47,8 @@ Route::middleware(['auth', 'moderator'])->get('/formulaire/{formulaire}/edit', [
 Route::put('/formulaire/{formulaire}', [FormulaireController::class, 'update'])->name('formulaire.update');
 
 Route::post('/formulaire/{formulaire}/publish', [FormulaireController::class, 'publish'])->name('formulaire.publish');
-
-
 Route::post('/formulaire/{formulaire}/unpublish', [FormulaireController::class, 'unpublish'])->name('formulaire.unpublish');
-Route::get('/', [ExperienceController::class, 'index'])->name('home');
+
 
 require __DIR__.'/auth.php';
 
